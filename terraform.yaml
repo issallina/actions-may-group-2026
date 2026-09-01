@@ -1,0 +1,15 @@
+name: Terraform CD 
+
+on: 
+  push:
+    branches: [ "main" ]
+
+jobs: 
+  deploy:   
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        name: Checkout repository
+
+      - name: Terraform Init
+        run: terraform init
