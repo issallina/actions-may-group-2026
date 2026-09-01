@@ -8,7 +8,7 @@ on:
         options:
         - apply
         - destroy
-        description: Please type apply or destroy
+        description: Please choose apply or destroy
 jobs:
   deploy:
     runs-on: ubuntu-latest
