@@ -2,6 +2,17 @@ provider "aws" {
     region = "us-east-1"
 }
 
+
+# s3 bucket
+terraform {
+  backend "s3" {
+    bucket = "kaizen-aliana"
+    key    = "terraform.tfstate"
+    region = "us-east-2"
+  }
+}
+
+# ec-2
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -26,3 +37,5 @@ resource "aws_instance" "example" {
     Name = "HelloWorld"
   }
 }
+
+
