@@ -5,11 +5,10 @@ on:
     inputs:
       action:
         type: choice
-        options: 
+        options:
         - apply
         - destroy
-        description: Please choose apply or destroy
-
+        description: Please type apply or destroy
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,7 +22,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6.2.4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}} 
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
@@ -32,9 +31,9 @@ jobs:
 
       - name: Terraform Apply or Destroy
         run: |
-          if [[ ${{ inputs.action }} == "apply"]]
+          if [[ ${{ inputs.action }} == "apply" ]]
           then
             terraform apply -auto-approve
           else
             terraform destroy -auto-approve
-          fi  
+          fi
