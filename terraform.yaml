@@ -1,11 +1,11 @@
-name: Terraform CD 
+name: Terraform CD
 
-on: 
+on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
-jobs: 
-  deploy:   
+jobs:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
