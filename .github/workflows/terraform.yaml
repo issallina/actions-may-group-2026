@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        type: string
-        description: Please type apply or destroy
-
+        type: choice
+        options: 
+        - apply
+        - destroy
+        description: Please choose apply or destroy
 
 jobs:
   deploy:
