@@ -27,7 +27,7 @@ jobs:
         name: Checkout repository
 
       - name: list files and folders
-        run: la -la
+        run: ls -la
 
       - name: create folder
         run: mkdir hello
