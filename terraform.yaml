@@ -2,7 +2,7 @@ name: Terraform CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
@@ -10,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         name: Checkout repository
+
+      - name: Setup Terraform
+      - uses: hashicorp/setup-terraform@v4
 
       - name: Terraform Init
         run: terraform init
