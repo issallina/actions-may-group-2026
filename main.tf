@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "us-east-1"
+    region = var.region
 }
 
 
@@ -31,11 +31,14 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "example" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   tags = {
-    Name = "HelloWorld"
+    Name = var.instance_name
   }
 }
 
 
+variable "region"{}
+variable "instance_name"{}
+variable "instance_type"{}
