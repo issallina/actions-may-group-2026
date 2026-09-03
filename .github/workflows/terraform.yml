@@ -22,10 +22,12 @@ on:
       instance_type:
         type: string
         description: Please provide instance type
+        required: true
 
       instance_name:
         type: string
         description: Please provide instance name
+        required: true
 
         
 jobs:
