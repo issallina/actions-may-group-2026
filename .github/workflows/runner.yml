@@ -1,4 +1,4 @@
-name: Terraform Runner
+name: Terraform Self Hosted Runner
 
 on:
   workflow_dispatch:
@@ -29,9 +29,6 @@ jobs:
 
       - name: Create tfvars file
         run: echo "${{ vars.TFVARS }}" > terraform.tfvars
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6.2.4
