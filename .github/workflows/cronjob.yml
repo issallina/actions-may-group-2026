@@ -2,40 +2,10 @@ name: Cronjob
 
 on:
   schedule:
-    - cron: 0 3 * * *
+    - cron: "0 5 * * *"
+
   workflow_dispatch:
-    inputs:
-      action:
-        type: choice
-        options:
-        - apply
-        - destroy
-        description: Please choose apply or destroy
-        default: apply
 
-      region:
-        type: choice
-        options:
-        - us-east-1
-        - us-east-2
-        - us-west-1
-        - us-west-2
-        description: Please select region
-        default: us-east-1
-        
-      instance_type:
-        type: string
-        description: Please provide instance type
-        required: true
-        default: t3.micro
-
-      instance_name:
-        type: string
-        description: Please provide instance name
-        required: true
-        default: cron
-
-        
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -43,32 +13,5 @@ jobs:
       - uses: actions/checkout@v7
         name: Checkout repository
 
-      - name: Create tfvars file
-        run: |
-          cat <<EOF > terraform.tfvars
-          instance_name = "${{ inputs.instance_name }}"
-          instance_type = "${{ inputs.instance_type }}"
-          region = "${{ inputs.region }}"
-          EOF
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v4
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6.2.4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}} 
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Apply or Destroy
-        run: |
-          if [[ ${{ inputs.action }} == "apply" ]]
-          then
-            terraform apply -auto-approve
-          else
-            terraform destroy -auto-approve
-          fi
+      - name: Run command
+        run: echo "THIS IS TEST CRON JOB RUN"
